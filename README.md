@@ -1,4 +1,10 @@
-# Create users inside a Cognito UserPool using AWS CDK
+# Provisioning Cognito users using AWS CDK
+
+Easily add/create users inside a Cognito UserPool during infrastructure provisioning using AWS CDK.
+
+The most common use case is for provisioning the "first admin" within your platform, who can later create other admins
+using UI. Another use case is if your application is for private use and you don't want to invest time in implementing a
+full user registration UI.
 
 ### Usage
 
@@ -12,7 +18,7 @@ new UserPoolUser(this, 'Tina', {
 });
 ```
 
-If you want to create the user within the UserPool and add him to a Cognito user group:
+If you want to create the user within the UserPool and add them to a Cognito user group:
 
 ```typescript
  new UserPoolUser(this, 'John', {
