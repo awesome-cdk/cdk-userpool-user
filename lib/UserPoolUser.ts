@@ -37,11 +37,12 @@ export class UserPoolUser extends Construct {
                 },
             },
             policy: AwsCustomResourcePolicy.fromSdkCalls({resources: AwsCustomResourcePolicy.ANY_RESOURCE}),
+            installLatestAwsSdk: true,
         });
 
         // Force the password for the user, because by default when new users are created
         // they are in FORCE_PASSWORD_CHANGE status. The newly created user has no way to change it though
-        const adminSetUserPassword = new AwsCustomResource(adminCreateUser, 'AwsCustomResource-ForcePassword', {
+        const adminSetUserPassword = new AwsCustomResource(this, 'AwsCustomResource-ForcePassword', {
             onCreate: {
                 service: 'CognitoIdentityServiceProvider',
                 action: 'adminSetUserPassword',
@@ -54,7 +55,9 @@ export class UserPoolUser extends Construct {
                 physicalResourceId: PhysicalResourceId.of(`AwsCustomResource-ForcePassword-${username}`),
             },
             policy: AwsCustomResourcePolicy.fromSdkCalls({resources: AwsCustomResourcePolicy.ANY_RESOURCE}),
+            installLatestAwsSdk: true,
         });
+        adminSetUserPassword.node.addDependency(adminCreateUser);
 
         // If a Group Name is provided, also add the user to this Cognito UserPool Group
         if (props.groupName) {
