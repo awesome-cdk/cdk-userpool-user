@@ -8,6 +8,7 @@ export class UserPoolUser extends Construct {
         userPool: IUserPool,
         username: string,
         password: string,
+        attributes?: { Name: string, Value: string }[],
         groupName?: string,
     }) {
         super(scope, id);
@@ -25,6 +26,9 @@ export class UserPoolUser extends Construct {
                     Username: username,
                     MessageAction: 'SUPPRESS',
                     TemporaryPassword: password,
+                    UserAttributes: [
+                        ...(props.attributes as any[]),
+                    ],
                 },
                 physicalResourceId: PhysicalResourceId.of(`AwsCustomResource-CreateUser-${username}`),
             },
