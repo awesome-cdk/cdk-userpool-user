@@ -1,3 +1,3 @@
-import {UserPoolUser} from "./UserPoolUser";
+import { UserPoolUser } from "./UserPoolUser";
 
-export {UserPoolUser};
+export { UserPoolUser };

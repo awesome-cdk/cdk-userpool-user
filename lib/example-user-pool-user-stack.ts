@@ -1,12 +1,13 @@
-import * as cdk from '@aws-cdk/core';
-import {RemovalPolicy} from '@aws-cdk/core';
-import {CfnUserPoolGroup, UserPool} from "@aws-cdk/aws-cognito";
+import * as cdk from 'aws-cdk-lib/core';
+import {RemovalPolicy} from 'aws-cdk-lib/core';
+import {CfnUserPoolGroup, UserPool} from "aws-cdk-lib/aws-cognito";
+import { Construct } from 'constructs';
 import {UserPoolUser} from "./UserPoolUser";
 
 export class ExampleUserPoolUserStack extends cdk.Stack {
     private readonly userPool: UserPool;
 
-    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
         this.userPool = new UserPool(this, 'UserPool', {
