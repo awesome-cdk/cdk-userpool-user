@@ -15,6 +15,7 @@ export class UserPoolUser extends Construct {
 
         const username = props.username;
         const password = props.password;
+        const UserAttributes = (props.attributes || []) as any[];
 
         // Create the user inside the Cognito user pool using Lambda backed AWS Custom resource
         const adminCreateUser = new AwsCustomResource(this, 'AwsCustomResource-CreateUser', {
@@ -26,9 +27,7 @@ export class UserPoolUser extends Construct {
                     Username: username,
                     MessageAction: 'SUPPRESS',
                     TemporaryPassword: password,
-                    UserAttributes: [
-                        ...(props.attributes as any[]),
-                    ],
+                    UserAttributes,
                 },
                 physicalResourceId: PhysicalResourceId.of(`AwsCustomResource-CreateUser-${username}`),
             },
