@@ -1,6 +1,6 @@
-import {Construct} from "@aws-cdk/core";
-import {CfnUserPoolUserToGroupAttachment, IUserPool} from "@aws-cdk/aws-cognito";
-import {AwsCustomResource, AwsCustomResourcePolicy, PhysicalResourceId} from "@aws-cdk/custom-resources";
+import { Construct } from "constructs";
+import { CfnUserPoolUserToGroupAttachment, IUserPool } from "aws-cdk-lib/aws-cognito";
+import { AwsCustomResource, AwsCustomResourcePolicy, PhysicalResourceId } from "aws-cdk-lib/custom-resources";
 
 export class UserPoolUser extends Construct {
 
@@ -8,6 +8,7 @@ export class UserPoolUser extends Construct {
         userPool: IUserPool,
         username: string,
         password: string,
+        attributes?: { Name: string, Value: string }[],
         groupName?: string,
     }) {
         super(scope, id);
@@ -25,6 +26,9 @@ export class UserPoolUser extends Construct {
                     Username: username,
                     MessageAction: 'SUPPRESS',
                     TemporaryPassword: password,
+                    UserAttributes: [
+                        ...(props.attributes as any[]),
+                    ],
                 },
                 physicalResourceId: PhysicalResourceId.of(`AwsCustomResource-CreateUser-${username}`),
             },

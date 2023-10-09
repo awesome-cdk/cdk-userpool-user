@@ -18,6 +18,21 @@ new UserPoolUser(this, 'Tina', {
 });
 ```
 
+If you want to create a user with attributes, such as `email_verified` to ensure the account behaves the same as normal users.
+
+```typescript
+ new UserPoolUser(this, '$stack-auth-test-user', {
+    userPool,
+    username: 'test@example.com',
+    password: 'Passw0$rd',
+    attributes: [
+        { Name: 'email', Value: 'test@example.com' },
+        { Name: 'email_verified', Value: 'true' },
+        { Name: 'name', Value: 'Test User' },
+    ],
+});
+```
+
 If you want to create the user within the UserPool and add them to a Cognito user group:
 
 ```typescript
