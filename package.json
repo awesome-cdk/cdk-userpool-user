@@ -1,9 +1,9 @@
 {
-  "name": "@awesome-cdk/cdk-userpool-user",
+  "name": "@erikerikson/cdk-userpool-user",
   "author": {
-    "name": "Dzhuneyt",
-    "email": "dzhuneyt@dzhuneyt.com",
-    "url": "https://github.com/Dzhuneyt"
+    "name": "Erik Erikson",
+    "email": "erik.erikson@gmail.com",
+    "url": "https://github.com/erikerikson"
   },
   "version": "0.0.2",
   "main": "./lib/index.js",
@@ -22,7 +22,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "https://github.com/awesome-cdk/cdk-userpool-user",
+  "repository": "https://github.com/erikerikson/cdk-userpool-user",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.5.0",

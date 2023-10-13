@@ -1,5 +1,7 @@
 # Provisioning Cognito users using AWS CDK
 
+Forked from [@awesome-cdk/cdk-userpool-user](https://github.com/awesome-cdk/cdk-userpool-user/).
+
 Easily add/create users inside a Cognito UserPool during infrastructure provisioning using AWS CDK.
 
 The most common use case is for provisioning the "first admin" within your platform, who can later create other admins
